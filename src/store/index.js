@@ -10,6 +10,7 @@ export default new Vuex.Store({
     opens: false,
     loading: false,
     apiData: [],
+    finder: [],
   },
   mutations: {
     SET_FREE_STATE(state, status) {
