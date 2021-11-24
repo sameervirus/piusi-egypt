@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const url = "https://www.piusi-egypt.com/api/test";
+const url = "https://www.piusi-egypt.com/api/";
 
 export default new Vuex.Store({
   state: {
@@ -22,6 +22,9 @@ export default new Vuex.Store({
     setLoading(state, status) {
       state.loading = status;
     },
+    setFinder(state, status) {
+      state.finder = status;
+    },
   },
   actions: {
     changeFreez(context) {
@@ -31,10 +34,15 @@ export default new Vuex.Store({
     },
     async setCurrentData(state) {
       state.commit("setLoading", true);
-      const returnData = await fetch(url);
+      const returnData = await fetch(`${url}/home`);
       const data = await returnData.json();
       state.commit("setCurrentData", data);
       state.commit("setLoading", false);
+    },
+    async setFinder(state, type) {
+      const returnData = await fetch(`${url}/finder/${type}`);
+      const data = await returnData.json();
+      state.commit("setFinder", data);
     },
   },
   modules: {},
