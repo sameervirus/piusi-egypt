@@ -2,26 +2,17 @@
   <div class="nav--mobile">
     <div class="nav--box" :class="{ opened: this.$store.state.opens }">
       <nav>
-        <a href="https://www.piusi.com/" class="nav--item">Home</a>
-
+        <router-link to="/" class="nav--item">Home</router-link>
         <div class="nav--item" data-subnavlink="">
           Products
           <div class="subnav--wrap__mobile">
             <div class="subnav--layout__mobile">
-              <a
-                href="https://www.piusi.com/products/fuel"
+              <router-link
+                v-for="(type, idx) in types"
+                v-bind:key="idx"
+                :to="{ path: `/products/${type.types_slug}` }"
                 class="subnav--item__mobile"
-                >Fuel</a
-              >
-              <a
-                href="https://www.piusi.com/products/lube"
-                class="subnav--item__mobile"
-                >Lubrication</a
-              >
-              <a
-                href="https://www.piusi.com/products/adblue-transfer-systems"
-                class="subnav--item__mobile"
-                >Other fluids</a
+                >{{ type.types }}</router-link
               >
               <a
                 href="https://www.piusi.com/products/catalogues"
@@ -32,15 +23,7 @@
           </div>
         </div>
 
-        <a href="https://www.piusi.com/company/about-us" class="nav--item"
-          >Company</a
-        >
-
-        <a
-          href="https://www.piusi.com/support/customer-service"
-          class="nav--item"
-          >Support</a
-        >
+        <router-link to="/about" class="nav--item">About us</router-link>
 
         <a href="https://www.piusi.com/news/oil-news" class="nav--item">News</a>
 
@@ -53,7 +36,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    types() {
+      return this.$store.state.apiData.types;
+    },
+  },
+};
 </script>
 
 <style></style>

@@ -46,29 +46,35 @@
           </g>
         </svg>
       </div>
-      <div class="footer--content">
+      <div v-if="siteContent" class="footer--content">
         <div class="footer--address">
-          <strong>Piusi S.p.A.</strong><br />
-          Via Pacinotti, 16/A<br />
-          46029 Suzzara (MN)<br />
-          ITALY<br /><br />
+          <h2 class="font-bold text-lg">MANAGEMENT</h2>
+          <strong>{{ siteContent.title }}</strong
+          ><br />
+          {{ siteContent.address_management }}<br /><br />
 
-          P.IVA IT01869920205<br />
-          Cap. Soc. € 516.456,00 i.v.<br />
-          R.I. MN 01869920205<br />
-          REA MN 204928<br />
+          Phone: {{ siteContent.tel_management }}<br />
+          Mobile: {{ siteContent.mob_management }}<br />
+          Email: {{ siteContent.email_management }}<br />
         </div>
         <div class="footer--contact">
-          <mark data-phone="" style="background: none; color: #fff"
-            ><span>Phone</span> +39 0376 534 561</mark
+          <h2 class="font-bold text-lg">SALES AND GALLERY</h2>
+          <p class="max-w-sm">{{ siteContent.address }}</p>
+          <br />
+          <mark style="background: none; color: #fff"
+            ><span>Phone</span> {{ siteContent.tel }}</mark
           ><br />
-          <span>Fax</span> +39 0376 536 393<br />
+          <mark style="background: none; color: #fff"
+            ><span>Fax</span> {{ siteContent.fax }}</mark
+          ><br />
+          <span>Mobile</span> {{ siteContent.mob }}<br />
         </div>
       </div>
       <div class="footer--social">
         <a
           rel="noopener"
-          href="https://www.facebook.com/PiusiOfficial/"
+          v-if="siteContent && siteContent.social_facebook"
+          :href="'//' + siteContent.social_facebook"
           class="footer--social__item"
           target="_blank"
           ><svg
@@ -84,7 +90,8 @@
         ></a>
         <a
           rel="noopener"
-          href="https://twitter.com/PiusiOfficial"
+          v-if="siteContent && siteContent.social_twitter"
+          :href="'//' + siteContent.social_twitter"
           class="footer--social__item"
           target="_blank"
           ><svg
@@ -100,7 +107,8 @@
         ></a>
         <a
           rel="noopener"
-          href="https://www.youtube.com/user/piusichannel"
+          v-if="siteContent && siteContent.social_youtube"
+          :href="'//' + siteContent.social_youtube"
           class="footer--social__item"
           target="_blank"
           ><svg
@@ -116,7 +124,8 @@
         ></a>
         <a
           rel="noopener"
-          href="https://www.linkedin.com/company/piusi-spa/"
+          v-if="siteContent && siteContent.social_linkedin"
+          :href="'//' + siteContent.social_linkedin"
           class="footer--social__item"
           target="_blank"
           ><svg
@@ -135,7 +144,8 @@
         </a>
         <a
           rel="noopener"
-          href="https://www.instagram.com/piusiofficial/"
+          v-if="siteContent && siteContent.social_instgram"
+          :href="'//' + siteContent.social_instgram"
           class="footer--social__item"
           target="_blank"
           ><svg
@@ -155,15 +165,9 @@
     <div class="post--footer">
       <div class="post--footer__layout">
         <hr />
-        <div class="post--footer__block">© 2021 - Piusi S.p.A.</div>
+        <div class="post--footer__block">© 2021 - Piusi Egypt.</div>
         <div class="post--footer__block">
-          <a href="https://www.piusi.com/documents/privacy-policy"
-            >Privacy policy</a
-          >
-          &nbsp;
-          <a href="https://www.piusi.com/documents/sales-conditions"
-            >General conditions of Sale</a
-          >
+          <a href="//raindesigner.com" target="_blank">Raindesigner.com</a>
         </div>
       </div>
     </div>
@@ -171,7 +175,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    siteContent() {
+      return this.$store.state.apiData.site_content;
+    },
+  },
+};
 </script>
 
 <style></style>

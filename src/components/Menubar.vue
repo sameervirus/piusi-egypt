@@ -8,8 +8,9 @@
           style="width: 75px; height: auto"
         />
         <img
-          src="https://asdegypt.com/images/logo.png"
-          alt="PIUSI SpA"
+          v-if="siteContent"
+          :src="'//www.piusi-egypt.com/images/' + siteContent.logo"
+          alt="ASDEGYPT"
           style="width: 75px; height: auto"
         />
       </router-link>
@@ -22,7 +23,14 @@
           <div class="nav--item" v-on:click="subnav()">
             Products
             <div class="subnav--wrap__mobile">
-              <div class="subnav--layout__mobile">
+              <!-- <div class="subnav--layout__mobile">
+                <router-link
+                  v-for="(type, idx) in types"
+                  v-bind:key="idx"
+                  :to="{ path: `/products/${type.types_slug}` }"
+                  class="subnav--item__mobile"
+                  >{{ type.types }}</router-link
+                >
                 <a href="/products/fuel" class="subnav--item__mobile">Fuel</a>
                 <a href="/products/lube" class="subnav--item__mobile"
                   >Lubrication</a
@@ -35,7 +43,7 @@
                 <a href="/products/catalogues" class="subnav--item__mobile"
                   >Catalogues</a
                 >
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -89,10 +97,12 @@
       >
         <div class="subnav--wrap" scroll-orizzontale-wrapper="">
           <div class="subnav--layout" data-scroll-orizzontale-content="">
-            <a href="/products/fuel" class="subnav--item">Fuel</a>
-            <a href="/products/lube" class="subnav--item">Lubrication</a>
-            <a href="/products/adblue-transfer-systems" class="subnav--item"
-              >AdBlue®/Other fluids</a
+            <router-link
+              v-for="(type, idx) in types"
+              v-bind:key="idx"
+              :to="{ path: `/products/${type.types_slug}` }"
+              class="subnav--item"
+              >{{ type.types }}</router-link
             >
             <a href="/products/catalogues" class="subnav--item">Catalogues</a>
           </div>
@@ -128,6 +138,14 @@ export default {
     return {
       openProduct: false,
     };
+  },
+  computed: {
+    siteContent() {
+      return this.$store.state.apiData.site_content;
+    },
+    types() {
+      return this.$store.state.apiData.types;
+    },
   },
   methods: {
     changeFreez() {

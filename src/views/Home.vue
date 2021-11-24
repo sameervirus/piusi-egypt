@@ -17,14 +17,18 @@
           <div class="heroSelector--subtitle">Choose your combination</div>
           <div class="heroSelector--body">
             <div class="heroSelector--block heroSelector--catalog">
-              <select>
+              <select v-on:change="selectedTypes">
                 <option value="0">Catalogue</option>
-                <option value="297">Fuel</option>
-                <option value="298">Lubrication</option>
-                <option value="299">AdBlue®/Other fluids</option>
+                <option
+                  v-for="(type, idx) in types"
+                  v-bind:key="idx"
+                  :value="type.types_slug"
+                >
+                  {{ type.types }}
+                </option>
               </select>
               <div class="heroSelector--ghost">
-                <div>Catalogue</div>
+                <div>{{ ghost }}</div>
               </div>
             </div>
             <div class="heroSelector--sep">
@@ -90,11 +94,22 @@ export default {
     titleTemplate: "%s - Piusi Egypt!",
   },
   data() {
-    return {};
+    return {
+      ghost: "Catalogue",
+    };
   },
   computed: {
     pages() {
       return this.$store.getters.getCurrentData;
+    },
+
+    types() {
+      return this.$store.state.apiData.types;
+    },
+  },
+  methods: {
+    selectedTypes: function (e) {
+      this.ghost = e.target.value;
     },
   },
 };
