@@ -1,24 +1,17 @@
-# piusi
+# Piusi Egypt
 
-## Project setup
-```
-npm install
-```
+This project was generated with Vue 2.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Usage
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Building website application for client with laravel core and Vue
+[piusi-egypt.com](https://www.piusi-egypt.com/)
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Contributing
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Show my Works
+[raindesigner.com](http://www.raindesigner.com/)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
