@@ -1,13 +1,13 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+    <div class="about">
+        <h1>This is an about page</h1>
+    </div>
 </template>
 <script>
 export default {
-  metaInfo: {
-    title: "About Us",
-    titleTemplate: "%s - Piusi Egypt!",
-  },
+    metaInfo: {
+        title: "About Us",
+        titleTemplate: "%s - Piusi Egypt!",
+    },
 };
 </script>
