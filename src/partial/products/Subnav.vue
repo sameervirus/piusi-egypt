@@ -5,9 +5,12 @@
                 <router-link
                     v-for="(type, idx) in siteData.types"
                     v-bind:key="idx"
-                    :to="{ path: `/products/${type.types_slug}` }"
+                    :to="{ path: `/products/${type.types_slug}/all` }"
                     class="subnav--item"
-                    active-class="subnav--item__on"
+                    :class="{
+                        'subnav--item__on':
+                            type.types_slug == $route.params.item,
+                    }"
                     >{{ type.types }}</router-link
                 >
                 <a

@@ -22,29 +22,7 @@
                     <router-link to="/" class="nav--item">Home</router-link>
                     <div class="nav--item" v-on:click="subnav()">
                         Products
-                        <div class="subnav--wrap__mobile">
-                            <!-- <div class="subnav--layout__mobile">
-                <router-link
-                  v-for="(type, idx) in types"
-                  v-bind:key="idx"
-                  :to="{ path: `/products/${type.types_slug}` }"
-                  class="subnav--item__mobile"
-                  >{{ type.types }}</router-link
-                >
-                <a href="/products/fuel" class="subnav--item__mobile">Fuel</a>
-                <a href="/products/lube" class="subnav--item__mobile"
-                  >Lubrication</a
-                >
-                <a
-                  href="/products/adblue-transfer-systems"
-                  class="subnav--item__mobile"
-                  >AdBlue®/Other fluids</a
-                >
-                <a href="/products/catalogues" class="subnav--item__mobile"
-                  >Catalogues</a
-                >
-              </div> -->
-                        </div>
+                        <div class="subnav--wrap__mobile"></div>
                     </div>
 
                     <router-link to="/about" class="nav--item"
@@ -120,7 +98,7 @@
                         <router-link
                             v-for="(type, idx) in types"
                             v-bind:key="idx"
-                            :to="{ path: `/products/${type.types_slug}` }"
+                            :to="{ path: `/products/${type.types_slug}/all` }"
                             class="subnav--item"
                             >{{ type.types }}</router-link
                         >
@@ -189,7 +167,13 @@ export default {
             }
         },
         subnav() {
-            this.openProduct = this.openProduct ? false : true;
+            if (!this.$route.path.includes("/products"))
+                this.openProduct = this.openProduct ? false : true;
+        },
+    },
+    watch: {
+        $route() {
+            this.openProduct = false;
         },
     },
 };

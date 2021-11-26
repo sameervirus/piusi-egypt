@@ -1,5 +1,6 @@
 :root {
     --main: #35495e;
+    --main-darker: rgb(from var(--main) r g b / 80%);
     --sec: #41b883;
 }
 html,
@@ -509,7 +510,7 @@ body {
 }
 
 .horizontal--arrow:active {
-    background: #ae1928;
+    background: var(--main-darker);
 }
 
 .horizontal--arrow.disabled {
@@ -528,6 +529,9 @@ body {
 
 @media (min-width: 769px) {
     .nav--mobile {
+        display: none;
+    }
+    .horizontal--arrow.arrow__show {
         display: none;
     }
 }

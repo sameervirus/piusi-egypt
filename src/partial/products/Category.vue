@@ -1,9 +1,15 @@
 <template>
-    <div class="productsGrid--rangeIcons">
+    <div v-if="typeData" class="productsGrid--rangeIcons">
         <div class="rangeIcons--wrap">
             <div class="rangeIcons--layout">
                 <div class="rangeIcons--body" v-touch:start="hideHand">
-                    <div class="rangeIcons--item">
+                    <div
+                        class="rangeIcons--item"
+                        :class="{
+                            'rangeIcons--item__current': selected == 'all',
+                        }"
+                        @click="selectedCategory('all')"
+                    >
                         <div class="rangeIcons--img">
                             <img
                                 src="https://media.piusi.com/prodotti/icone/car_filling_sd.png"
@@ -11,103 +17,32 @@
                                     https://media.piusi.com/prodotti/icone/car_filling_sd.png 1x,
                                     https://media.piusi.com/prodotti/icone/car_filling_hd.png 2x
                                 "
-                                alt="All fuel products"
-                            />
-                        </div>
-                        <div class="rangeIcons--txt">All fuel products</div>
-                    </div>
-                    <div class="rangeIcons--item">
-                        <div class="rangeIcons--img">
-                            <img
-                                src="https://media.piusi.com/prodotti/icone/fluid_monitoring_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/fluid_monitoring_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/fluid_monitoring_hd.png 2x
-                                "
-                                alt="Fuel management systems"
+                                :alt="`All ${typeData.title} products`"
                             />
                         </div>
                         <div class="rangeIcons--txt">
-                            Fuel management systems
+                            All {{ typeData.title }} products
                         </div>
                     </div>
-                    <div class="rangeIcons--item">
+                    <div
+                        v-for="(range, idx) in typeData.ranges"
+                        v-bind:key="idx"
+                        class="rangeIcons--item"
+                        :class="{
+                            'rangeIcons--item__current':
+                                selected == range.category_slug,
+                        }"
+                        @click="selectedCategory(range.category_slug)"
+                    >
                         <div class="rangeIcons--img">
                             <img
-                                src="https://media.piusi.com/prodotti/icone/dispenser_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/dispenser_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/dispenser_hd.png 2x
-                                "
-                                alt="Dispensers"
+                                src="https://media.piusi.com/prodotti/icone/fluid_monitoring_sd.png"
+                                :alt="range.category"
                             />
                         </div>
-                        <div class="rangeIcons--txt">Dispensers</div>
-                    </div>
-                    <div class="rangeIcons--item">
-                        <div class="rangeIcons--img">
-                            <img
-                                src="https://media.piusi.com/prodotti/icone/kitfuel_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/kitfuel_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/kitfuel_hd.png 2x
-                                "
-                                alt="Kits"
-                            />
+                        <div class="rangeIcons--txt">
+                            {{ range.category }}
                         </div>
-                        <div class="rangeIcons--txt">Kits</div>
-                    </div>
-                    <div class="rangeIcons--item">
-                        <div class="rangeIcons--img">
-                            <img
-                                src="https://media.piusi.com/prodotti/icone/pumps_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/pumps_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/pumps_hd.png 2x
-                                "
-                                alt="Pumps"
-                            />
-                        </div>
-                        <div class="rangeIcons--txt">Pumps</div>
-                    </div>
-                    <div class="rangeIcons--item">
-                        <div class="rangeIcons--img">
-                            <img
-                                src="https://media.piusi.com/prodotti/icone/meters_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/meters_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/meters_hd.png 2x
-                                "
-                                alt="Meters"
-                            />
-                        </div>
-                        <div class="rangeIcons--txt">Meters</div>
-                    </div>
-                    <div class="rangeIcons--item">
-                        <div class="rangeIcons--img">
-                            <img
-                                src="https://media.piusi.com/prodotti/icone/nozzle_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/nozzle_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/nozzle_hd.png 2x
-                                "
-                                alt="Nozzles"
-                            />
-                        </div>
-                        <div class="rangeIcons--txt">Nozzles</div>
-                    </div>
-                    <div class="rangeIcons--item">
-                        <div class="rangeIcons--img">
-                            <img
-                                src="https://media.piusi.com/prodotti/icone/filtration_sd.png"
-                                srcset="
-                                    https://media.piusi.com/prodotti/icone/filtration_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/filtration_hd.png 2x
-                                "
-                                alt="Filtration"
-                            />
-                        </div>
-                        <div class="rangeIcons--txt">Filtration</div>
                     </div>
                 </div>
                 <div
@@ -150,11 +85,26 @@ export default {
     data() {
         return {
             hand: true,
+            selected: null,
         };
+    },
+    mounted() {
+        this.selected = this.$route.params.category;
     },
     methods: {
         hideHand() {
             this.hand = false;
+        },
+        selectedCategory(e) {
+            this.$router.push({
+                path: `/products/${this.typeData.types}/${e}`,
+            });
+            this.selected = e;
+        },
+    },
+    computed: {
+        typeData() {
+            return this.$store.state.typeData;
         },
     },
 };

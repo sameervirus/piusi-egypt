@@ -11,6 +11,7 @@ export default new Vuex.Store({
         loading: false,
         apiData: [],
         finder: null,
+        typeData: null,
     },
     mutations: {
         SET_FREE_STATE(state, status) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         },
         setFinder(state, status) {
             state.finder = status;
+        },
+        setTypeData(state, status) {
+            state.typeData = status;
         },
     },
     actions: {
@@ -44,10 +48,18 @@ export default new Vuex.Store({
             const data = await returnData.json();
             state.commit("setFinder", data);
         },
+        async setTypeData(state, type) {
+            state.commit("setLoading", true);
+            const returnData = await fetch(`${url}/types/${type}`);
+            const data = await returnData.json();
+            state.commit("setTypeData", data);
+            state.commit("setLoading", false);
+        },
     },
     modules: {},
     getters: {
         getCurrentData: (state) => state.apiData,
         getFinder: (state) => state.finder,
+        getTypeData: (state) => state.typeData,
     },
 });

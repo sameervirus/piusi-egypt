@@ -10,7 +10,9 @@
                             <router-link
                                 v-for="(type, idx) in types"
                                 v-bind:key="idx"
-                                :to="{ path: `/products/${type.types_slug}` }"
+                                :to="{
+                                    path: `/products/${type.types_slug}/all`,
+                                }"
                                 class="subnav--item__mobile"
                                 >{{ type.types }}</router-link
                             >
