@@ -13,28 +13,7 @@
                         </div>
                         <!---->
                     </div>
-                    <div class="productsGrid--body">
-                        <div class="finder--filters__opener btn">
-                            <span style="width: 20px; height: 24px"
-                                ><svg
-                                    aria-hidden="true"
-                                    data-prefix="fas"
-                                    data-icon="sliders-h"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24px"
-                                    height="24px"
-                                    viewBox="0 0 512 512"
-                                    class="svg-inline--fa fa-sliders-h fa-w-16"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M496 384H160v-16a16 16 0 0 0-16-16h-32a16 16 0 0 0-16 16v16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h80v16a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-16h336a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-160h-80v-16a16 16 0 0 0-16-16h-32a16 16 0 0 0-16 16v16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h336v16a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-16h80a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-160H288V48a16 16 0 0 0-16-16h-32a16 16 0 0 0-16 16v16H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16h208v16a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-16h208a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16z"
-                                    ></path></svg
-                            ></span>
-                            Filter products
-                        </div>
-                        <Sidebar :data="selectedCategory"></Sidebar>
-                    </div>
+                    <Sidebar :data="selectedCategory"></Sidebar>
                     <!---->
                 </div>
             </div>
@@ -76,6 +55,7 @@ export default {
     beforeMount() {
         this.setTypeData();
     },
+    mounted() {},
     computed: {
         ...mapGetters({ typeData: "getTypeData" }),
         selectedCategory() {

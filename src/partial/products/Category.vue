@@ -107,6 +107,11 @@ export default {
             return this.$store.state.typeData;
         },
     },
+    watch: {
+        $route() {
+            this.selected = this.$route.params.category;
+        },
+    },
 };
 </script>
 

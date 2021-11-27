@@ -12,6 +12,7 @@ export default new Vuex.Store({
         apiData: [],
         finder: null,
         typeData: null,
+        product: null,
     },
     mutations: {
         SET_FREE_STATE(state, status) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
         },
         setTypeData(state, status) {
             state.typeData = status;
+        },
+        setProduct(state, status) {
+            state.product = status;
         },
     },
     actions: {
@@ -55,11 +59,19 @@ export default new Vuex.Store({
             state.commit("setTypeData", data);
             state.commit("setLoading", false);
         },
+        async setProduct(state, slug) {
+            state.commit("setLoading", true);
+            const returnData = await fetch(`${url}/product/${slug}`);
+            const data = await returnData.json();
+            state.commit("setProduct", data);
+            state.commit("setLoading", false);
+        },
     },
     modules: {},
     getters: {
         getCurrentData: (state) => state.apiData,
         getFinder: (state) => state.finder,
         getTypeData: (state) => state.typeData,
+        getProduct: (state) => state.product,
     },
 });

@@ -21,9 +21,15 @@ const routes = [
     },
     {
         path: "/products/:item/:category",
-        hame: "Products",
+        name: "Products",
         component: () =>
             import(/* webpackChunkName: "products"*/ "../views/Products.vue"),
+    },
+    {
+        path: "/product/:item",
+        name: "Product",
+        component: () =>
+            import(/* webpackChunkName: "product"*/ "../views/Item.vue"),
     },
 ];
 
