@@ -1899,3 +1899,356 @@ body .lg-actions .lg-prev:hover {
     color: #da2032;
     text-align: center;
 }
+.pxxForm--wrap {
+    padding-bottom: 80px;
+}
+
+.pxxForm--layout {
+    background: #fff;
+    box-shadow: 0px 0px 50px -10px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.pxxForm--txt {
+    font-style: italic;
+}
+
+.pxxForm--body {
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .pxxForm--row__2col {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pxxForm--row__2col .pxxForm--control {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (min-width: 768px) {
+    .pxxForm--row__3col {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pxxForm--row__3col .pxxForm--control {
+        width: calc(33.3% - 10px);
+    }
+}
+
+@media (min-width: 768px) {
+    .pxxForm--row + .pxxForm--row {
+        margin-top: 20px;
+    }
+}
+
+.pxxForm--control {
+    position: relative;
+    padding-top: 15px;
+}
+
+@media (min-width: 768px) {
+    .pxxForm--control {
+        margin-top: 0px;
+    }
+}
+
+.pxxForm--label {
+    display: block;
+    color: #999;
+    pointer-events: none;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pxxForm--control__text .pxxForm--label {
+    transform: translateY(20px);
+}
+
+.pxxForm--control__text .pxxForm--label__on {
+    transition: all 150ms;
+    font-size: 12px;
+    transform: translateY(0);
+}
+
+.pxxForm--control__text .pxxForm--label__editing {
+    transition: all 150ms;
+    font-size: 12px;
+    transform: translateY(0);
+    color: #da2032;
+}
+
+.pxxForm--control__select .pxxForm--label {
+    font-size: 12px;
+}
+
+.pxxForm--control__textarea .pxxForm--label {
+    font-size: 12px;
+}
+
+.pxxForm--control__checkboxList .pxxForm--label {
+    display: block;
+    position: static;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.pxxForm--checkboxList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pxxForm--checkboxList label {
+    margin: 0;
+    padding: 0;
+    margin-right: 12px;
+    white-space: nowrap;
+}
+
+.pxxForm--checkboxList input {
+    margin: 0 1px 0 0;
+    padding: 0;
+}
+
+.pxxForm--control__file .pxxForm--label {
+    font-size: 12px;
+    margin-bottom: 10px;
+    position: static;
+}
+
+.pxxForm--control__disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.pxxForm--input,
+.pxxForm--textarea,
+.pxxForm--select,
+.pxxForm--text {
+    font-size: 16px;
+    font-family: "Neutra", "Trebuchet MS", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: #444;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background: transparent;
+    outline: none;
+}
+
+.pxxForm--text {
+    border: none;
+    border-bottom: 1px solid #999;
+}
+
+.pxxForm--text:focus {
+    border-bottom: 1px solid #da2032;
+    box-shadow: 0 1px 0 #da2032;
+}
+
+.pxxForm--checkbox {
+    margin: 0 8px 0 0;
+}
+
+.pxxForm--select {
+    border: none;
+    border-bottom: 1px solid #999;
+}
+
+.pxxForm--select:focus {
+    border-bottom: 1px solid #da2032;
+    box-shadow: 0 1px 0 #da2032;
+}
+
+.pxxForm--textarea {
+    border: none;
+    border-bottom: 1px solid #999;
+}
+
+.pxxForm--textarea:focus {
+    border-bottom: 1px solid #da2032;
+    box-shadow: 0 1px 0 #da2032;
+}
+
+.pxxForm--privacy {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.pxxForm--privacy label {
+    display: block;
+}
+
+.pxxForm--privacy p {
+    display: inline;
+}
+
+.pxxForm--privacyLabel input {
+    margin-left: 0px;
+    margin-right: 5px;
+}
+
+.pxxForm--privacyLabel + .pxxForm--privacyLabel {
+    margin-top: 0.5rem;
+}
+
+.pxxForm--submit {
+    text-align: center;
+}
+
+.pxxForm--altHead {
+    text-align: center;
+    padding: 15px 30px;
+    background: #f6f6f6;
+    color: #da2032;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.fakecheckbox--wrap {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.fakecheckbox--wrap + .fakecheckbox--wrap {
+    margin-top: 1rem;
+}
+
+.fakecheckbox--tick {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    margin-right: 10px;
+}
+
+.fakecheckbox--tick svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: none;
+}
+
+.fakecheckbox--wrap__on {
+    font-weight: bold;
+    color: #da2032;
+}
+
+.fakecheckbox--wrap__on .fakecheckbox--tick {
+    background: #da2032;
+}
+
+.fakecheckbox--wrap__on .fakecheckbox--tick svg {
+    fill: #fff;
+}
+
+.pxxvalidate--err {
+    color: #da2032;
+    font-weight: bold;
+    margin-top: 3px;
+    font-size: 13px;
+}
+
+.pxxForm--msg {
+    color: #da2032;
+    font-weight: bold;
+    margin-top: 3px;
+    font-size: 13px;
+}
+
+.pxxForm--body {
+    position: relative;
+    overflow: hidden;
+}
+
+.pxxForm--loader {
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.pxxForm--loader__on {
+    opacity: 1;
+    transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateX(0);
+}
+
+.pxxForm--response {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.pxxForm--completesvg svg {
+    width: 40px;
+    height: auto;
+    fill: #da2032;
+}
+
+.autoriempi {
+    background: #555;
+    color: #eee;
+    margin: 1rem 0 0 0;
+    padding: 5px 5px 4px 5px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.autoriempi:hover {
+    background: #da2032;
+}
+
+.pxxForm--back {
+    color: #da2032;
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pxxForm--separator {
+    text-align: center;
+    color: #999;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.pxxForm--row + .pxxForm--separator {
+    margin-top: 2.4rem;
+}
+
+.customerCode {
+    font-size: 13px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.customerCode:hover {
+    color: #da2032;
+}

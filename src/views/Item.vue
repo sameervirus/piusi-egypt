@@ -110,7 +110,7 @@
                                 v-html="product.features"
                             ></div>
 
-                            <div class="btn" data-ui-richiediinfo="">
+                            <div class="btn" @click="requestInfo">
                                 Request information
                             </div>
                         </div>
@@ -208,6 +208,9 @@ export default {
     methods: {
         setProduct() {
             this.$store.dispatch("setProduct", this.$route.params.item);
+        },
+        requestInfo() {
+            this.$store.commit("setForm", true);
         },
     },
     computed: {

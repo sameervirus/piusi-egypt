@@ -9,6 +9,8 @@ export default new Vuex.Store({
     state: {
         opens: false,
         loading: false,
+        spinner: false,
+        form: false,
         apiData: [],
         finder: null,
         typeData: null,
@@ -23,6 +25,11 @@ export default new Vuex.Store({
         },
         setLoading(state, status) {
             state.loading = status;
+            state.spinner = status;
+        },
+        setForm(state, status) {
+            state.loading = status;
+            state.form = status;
         },
         setFinder(state, status) {
             state.finder = status;

@@ -1,7 +1,8 @@
 <template>
     <div>
         <div v-if="this.$store.state.loading" class="loading">
-            <Loadingbar />
+            <Loadingbar v-if="this.$store.state.spinner" />
+            <Contact v-if="this.$store.state.form"></Contact>
         </div>
         <Navmobile></Navmobile>
         <Header></Header>
@@ -15,8 +16,10 @@ import Header from "./components/Header";
 import Navmobile from "./components/Navmobile";
 import Footer from "./components/Footer";
 import Loadingbar from "./components/Loadingbar";
+import Contact from "./components/Contact";
 
 export default {
+    components: { Header, Navmobile, Footer, Loadingbar, Contact },
     metaInfo() {
         return {
             link: [
@@ -40,7 +43,7 @@ export default {
                 "water pumps, pumps, wortex, wortex egypt, best water pumps in egypt, Italian water pumps, speroni",
         };
     },
-    components: { Header, Navmobile, Footer, Loadingbar },
+
     mounted() {
         this.$store.dispatch("setCurrentData");
         if (this.$store.state.apiData.site_content) {
