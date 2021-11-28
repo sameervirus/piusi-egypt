@@ -66,6 +66,7 @@ export default {
             );
         },
         title() {
+            if (this.selectedCategory.length === 0) return "No Products found";
             if (this.$route.params.category == "all") {
                 return `All ${this.selectedCategory[0].types} Products`;
             } else {
