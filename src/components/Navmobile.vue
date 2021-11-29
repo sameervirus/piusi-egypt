@@ -33,10 +33,8 @@
                     >News & Media</router-link
                 >
 
-                <a
-                    href="https://www.piusi.com/contacts/contact-us"
-                    class="nav--item"
-                    >Contacts</a
+                <router-link to="/contacts" class="nav--item"
+                    >Contacts</router-link
                 >
             </nav>
         </div>

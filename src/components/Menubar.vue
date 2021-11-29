@@ -33,8 +33,8 @@
                         >News & Media</router-link
                     >
 
-                    <a href="/contacts/contact-us" class="nav--item"
-                        >Contacts</a
+                    <router-link to="/contacts" class="nav--item"
+                        >Contacts</router-link
                     >
                 </nav>
             </div>

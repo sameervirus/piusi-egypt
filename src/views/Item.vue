@@ -205,7 +205,7 @@ export default {
     mounted() {
         const el = document.getElementById("lightgallery");
         window.lightGallery(el, {
-            selector: ".galleryitem",
+            selector: "a",
             counter: false,
             download: false,
         });
