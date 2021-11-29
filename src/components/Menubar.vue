@@ -29,7 +29,9 @@
                         >About us</router-link
                     >
 
-                    <a href="/news/oil-news" class="nav--item">News</a>
+                    <router-link to="/news-media" class="nav--item"
+                        >News & Media</router-link
+                    >
 
                     <a href="/contacts/contact-us" class="nav--item"
                         >Contacts</a

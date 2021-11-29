@@ -29,8 +29,8 @@
                     >About us</router-link
                 >
 
-                <a href="https://www.piusi.com/news/oil-news" class="nav--item"
-                    >News</a
+                <router-link to="/news-media" class="nav--item"
+                    >News & Media</router-link
                 >
 
                 <a

@@ -31,6 +31,12 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "product"*/ "../views/Item.vue"),
     },
+    {
+        path: "/news-media",
+        name: "News",
+        component: () =>
+            import(/* webpackChunkName: "product"*/ "../views/News.vue"),
+    },
 ];
 
 const router = new VueRouter({

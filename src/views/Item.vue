@@ -175,7 +175,6 @@
 <script>
 import Slick from "vue-slick";
 import "slick-carousel/slick/slick.css";
-import { mapGetters } from "vuex";
 import "lightgallery.js";
 import "lightgallery.js/dist/css/lightgallery.css";
 
@@ -192,10 +191,16 @@ export default {
                 arrows: true,
                 speed: 200,
             },
+            product: null,
         };
     },
-    beforeMount() {
-        this.setProduct();
+    async created() {
+        const response = await this.$api.get({
+            resource: "product",
+            id: this.$route.params.item,
+        });
+
+        this.product = response.data;
     },
     mounted() {
         const el = document.getElementById("lightgallery");
@@ -206,15 +211,9 @@ export default {
         });
     },
     methods: {
-        setProduct() {
-            this.$store.dispatch("setProduct", this.$route.params.item);
-        },
         requestInfo() {
             this.$store.commit("setForm", true);
         },
-    },
-    computed: {
-        ...mapGetters({ product: "getProduct" }),
     },
 };
 </script>
