@@ -35,15 +35,16 @@
                             <span>Mobile</span> {{ siteContent.mob }}<br />
                         </div>
                     </div>
+                    <br /><br />
+                    <div class="recapiti--sx mb-4">
+                        <div class="btn" @click="requestInfo">Contact Us</div>
+                    </div>
                 </div>
 
                 <div class="mappa--wrap">
-                    <div
-                        class="mappa--body"
-                        style="padding-bottom: 50%; position: relative"
-                    >
+                    <div class="mappa--body" style="position: relative">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6906.6104563515855!2d31.238720129851284!3d30.056784200003733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840947b300001%3A0x81d7de0d5190631e!2s10%20Nagib%20Al%20Rihani%2C%20Al%20Gayarah%2C%20Al%20Azbakeya%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1638224815383!5m2!1sen!2seg"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.304890496337!2d31.24147141492886!3d30.056793881877873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145841e94159fa6b%3A0xecb3acb6aee08875!2z2KfZhNi52LHYqNmK2Kkg2YTYqtmG2YXZitipINin2YTYrtiv2YXYp9iqIEFTRA!5e0!3m2!1sen!2seg!4v1638343692765!5m2!1sen!2seg"
                             width="600"
                             height="450"
                             style="border: 0"
@@ -59,9 +60,18 @@
 
 <script>
 export default {
+    metaInfo: {
+        title: "Contact Us",
+        titleTemplate: "%s - Piusi Egypt!",
+    },
     computed: {
         siteContent() {
             return this.$store.state.apiData.site_content;
+        },
+    },
+    methods: {
+        requestInfo() {
+            this.$store.commit("setForm", true);
         },
     },
 };

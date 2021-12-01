@@ -262,13 +262,6 @@
     margin-top: 10px;
 }
 
-.main--wrap {
-    opacity: 1;
-    min-height: calc(100vh - 300px);
-    transition: opacity 250ms ease-in-out, padding-top 250ms;
-    padding-top: calc(30px + 70px + 43px + 80px);
-}
-
 .main--wrap.conLangBar {
     padding-top: calc(30px + 70px + 43px + 80px + 71px);
 }

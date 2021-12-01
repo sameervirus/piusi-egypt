@@ -16,10 +16,10 @@
                                 class="subnav--item__mobile"
                                 >{{ type.types }}</router-link
                             >
-                            <a
-                                href="https://www.piusi.com/products/catalogues"
+                            <router-link
+                                to="/catalogues"
                                 class="subnav--item__mobile"
-                                >Catalogues</a
+                                >Catalogues</router-link
                             >
                         </div>
                     </div>

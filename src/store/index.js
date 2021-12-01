@@ -14,6 +14,7 @@ export default new Vuex.Store({
         apiData: [],
         finder: null,
         typeData: null,
+        hasItem: null,
     },
     mutations: {
         SET_FREE_STATE(state, status) {
@@ -35,6 +36,9 @@ export default new Vuex.Store({
         },
         setTypeData(state, status) {
             state.typeData = status;
+        },
+        setHasItem(state, status) {
+            state.hasItem = status;
         },
     },
     actions: {

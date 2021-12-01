@@ -27,6 +27,12 @@ import Category from "../partial/products/Category";
 import Sidebar from "../partial/products/Sidebar";
 import { mapGetters } from "vuex";
 export default {
+    metaInfo() {
+        return {
+            title: this.title,
+            titleTemplate: "%s - Piusi Egypt!",
+        };
+    },
     components: {
         Subnav,
         Category,
@@ -60,13 +66,14 @@ export default {
         ...mapGetters({ typeData: "getTypeData" }),
         selectedCategory() {
             if (this.$route.params.category == "all")
-                return this.typeData.products;
-            return this.typeData.products.filter(
+                return this.typeData?.products;
+            return this.typeData?.products.filter(
                 (item) => item.category_slug == this.$route.params.category
             );
         },
         title() {
-            if (this.selectedCategory.length === 0) return "No Products found";
+            if (!this.selectedCategory) return "Products";
+            if (this.selectedCategory?.length === 0) return "No Products found";
             if (this.$route.params.category == "all") {
                 return `All ${this.selectedCategory[0].types} Products`;
             } else {
@@ -87,6 +94,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url(../assets/product.css);
+.main--wrap {
+    opacity: 1;
+    min-height: calc(100vh - 300px);
+    transition: opacity 250ms ease-in-out, padding-top 250ms;
+    padding-top: calc(30px + 70px + 43px + 80px);
+}
 </style>

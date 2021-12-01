@@ -13,10 +13,8 @@
                     }"
                     >{{ type.types }}</router-link
                 >
-                <a
-                    href="https://www.piusi.com/products/catalogues"
-                    class="subnav--item"
-                    >Catalogues</a
+                <router-link to="/catalogues" class="subnav--item"
+                    >Catalogues</router-link
                 >
             </div>
         </div>

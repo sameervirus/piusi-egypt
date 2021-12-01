@@ -3,7 +3,7 @@
         <div class="menu--logowrap">
             <router-link to="/" class="menu--logo"
                 ><img
-                    src="https://www.piusi.com/assets/img/piusi-logo.svg"
+                    src="//www.piusi-egypt.com/images/piusi-logo.svg"
                     alt="PIUSI SpA"
                     style="width: 75px; height: auto"
                 />
@@ -104,8 +104,9 @@
                             class="subnav--item"
                             >{{ type.types }}</router-link
                         >
-                        <a href="/products/catalogues" class="subnav--item"
-                            >Catalogues</a
+
+                        <router-link to="/catalogues" class="subnav--item"
+                            >Catalogues</router-link
                         >
                     </div>
                     <div

@@ -3,7 +3,7 @@
         <div
             class="company--img"
             style="
-                background-image: url('https://media.piusi.com/altro/home/HP_garage.jpg');
+                background-image: url('//www.piusi-egypt.com/images/home.jpg');
             "
         >
             <div class="company--intro">
@@ -85,7 +85,11 @@
                         </div>
                     </div>
                     <div class="heroSelector--browse mt-3">
-                        <button :disabled="!finders" class="btn--wrap">
+                        <button
+                            :disabled="!finders"
+                            class="btn--wrap"
+                            @click="goToProducts"
+                        >
                             Browse products
                         </button>
                     </div>
@@ -104,10 +108,7 @@
                     </div>
                 </div>
                 <div class="company--row__side centered">
-                    <img
-                        src="https://media.piusi.com/altro/company/PIUSI_EsternoAzienda_2018.jpg"
-                        alt=""
-                    />
+                    <img src="//www.piusi-egypt.com/images/about.jpg" alt="" />
                 </div>
             </div>
         </div>
@@ -126,23 +127,43 @@ export default {
             ghost: "Catalogue",
             ghost2: "Product range",
             ghost3: "Application",
+            searchText: {},
         };
     },
     computed: {
         ...mapGetters({ siteData: "getCurrentData", finders: "getFinder" }),
     },
     methods: {
-        selectedTypes: function (e) {
+        selectedTypes(e) {
+            this.searchText.types = e.target.value;
             this.ghost = e.target.options[e.target.selectedIndex].text;
             this.ghost2 = "Product range";
             this.ghost3 = "Application";
             this.$store.dispatch("setFinder", e.target.value);
         },
-        selectedRange: function (e) {
+        selectedRange(e) {
+            this.searchText.range = e.target.value;
             this.ghost2 = e.target.options[e.target.selectedIndex].text;
         },
-        selectedApp: function (e) {
+        selectedApp(e) {
+            this.searchText.applications = e.target.value;
             this.ghost3 = e.target.options[e.target.selectedIndex].text;
+        },
+        goToProducts() {
+            const items = this.searchText;
+            this.searchText = {};
+            this.ghost = "Catalogue";
+            this.ghost2 = "Product range";
+            this.ghost3 = "Application";
+            this.$store.commit("setFinder", null);
+            this.$router.push({
+                name: "Products",
+                params: {
+                    item: items.types,
+                    category: items.range ?? "all",
+                },
+                query: { applications: items.applications ?? "" },
+            });
         },
     },
 };

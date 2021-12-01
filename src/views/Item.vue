@@ -126,6 +126,7 @@
                         <div
                             class="productManuals--wrap"
                             style="margin-top: 40px"
+                            v-if="product.technical_data"
                         >
                             <h2 class="prodotti--subtitle">Technical data</h2>
                             <div
@@ -179,6 +180,12 @@ import "lightgallery.js";
 import "lightgallery.js/dist/css/lightgallery.css";
 
 export default {
+    metaInfo() {
+        return {
+            title: this.product?.name,
+            titleTemplate: "%s - Piusi Egypt!",
+        };
+    },
     components: { Slick },
     data() {
         return {
@@ -213,6 +220,10 @@ export default {
     methods: {
         requestInfo() {
             this.$store.commit("setForm", true);
+            this.$store.commit("setHasItem", {
+                slug: this.product.slug,
+                name: this.product.name,
+            });
         },
     },
 };

@@ -10,6 +10,14 @@
                     @submit.prevent="submitForm"
                     autocomplete="off"
                 >
+                    <div v-if="product" class="pxxForm--row pxxForm--row__col">
+                        <p>Request information: {{ product.name }}</p>
+                        <input
+                            type="hidden"
+                            name="form.item"
+                            :value="product.slug"
+                        />
+                    </div>
                     <div class="pxxForm--row pxxForm--row__2col">
                         <div class="pxxForm--control pxxForm--control__text">
                             <label
@@ -159,6 +167,7 @@ export default {
                 company: null,
                 email: null,
                 messages: null,
+                item: null,
             },
             sub: false,
             focusdName: false,
@@ -166,7 +175,11 @@ export default {
             focusdCompany: false,
             focusdEmail: false,
             fromSent: false,
+            product: null,
         };
+    },
+    mounted() {
+        this.product = this.$store.state.hasItem;
     },
     computed: {
         isNameValid() {
@@ -211,6 +224,7 @@ export default {
         },
         closeForm() {
             this.$store.commit("setForm", false);
+            this.$store.commit("setHasItem", null);
         },
     },
 };

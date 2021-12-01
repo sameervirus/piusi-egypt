@@ -98,6 +98,10 @@
 
 <script>
 export default {
+    metaInfo: {
+        title: "News & Media",
+        titleTemplate: "%s - Piusi Egypt!",
+    },
     data() {
         return {
             posts: null,

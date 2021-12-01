@@ -325,6 +325,8 @@ export default {
         };
     },
     mounted() {
+        if (this.$route.query.applications != "")
+            this.faon = this.$route.query.applications;
         this.filterProducts();
     },
     computed: {
