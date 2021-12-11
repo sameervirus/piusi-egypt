@@ -252,12 +252,14 @@ export default {
         };
     },
     async created() {
+        this.$store.commit("setLoading", true);
         const response = await this.$api.get({
             resource: "product",
             id: this.$route.params.item,
         });
 
         this.product = response.data;
+        this.$store.commit("setLoading", false);
     },
     mounted() {
         const el = document.getElementById("lightgallery");
