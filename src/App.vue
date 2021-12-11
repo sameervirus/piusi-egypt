@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :id="`lang-${$i18n.locale}`">
         <div v-if="this.$store.state.loading" class="loading">
             <Loadingbar v-if="this.$store.state.spinner" />
             <Contact v-if="this.$store.state.form"></Contact>

@@ -1,0 +1,111 @@
+html[lang="ar"] {
+    body {
+        font-family: "Noto Naskh Arabic", serif;
+    }
+    .menu--logowrap {
+        padding-right: 15px;
+    }
+    .nav--btn {
+        left: 16px;
+        right: auto;
+    }
+    .nav--item {
+        font-size: 24px;
+    }
+    .subnav--item__mobile {
+        font-size: 20px;
+    }
+    footer {
+        font-size: 1em;
+        h2 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+    }
+    .footer--address {
+        padding-right: 0;
+    }
+    .footer--logo {
+        padding-right: 0;
+        display: flex;
+    }
+    footer h2 {
+        margin-top: 0;
+    }
+
+    .videoGallery--item + .videoGallery--item {
+        margin-right: 15px;
+        margin-left: 0;
+    }
+    .rangeIcons--txt {
+        font-size: 14px;
+    }
+
+    .filters--checkbox {
+        margin-left: 10px;
+        margin-right: 2px;
+    }
+    .finder--filters__reset span {
+        margin-left: 5px;
+    }
+
+    .arrow__dx {
+        left: 0;
+        right: auto;
+    }
+    .finder--filters__opener span {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    .finder--filters__apply span {
+        margin-left: 5px;
+        margin-right: 0;
+    }
+
+    .productDownloads--txt {
+        padding-right: 0;
+        padding-left: 30px;
+    }
+    .productDownloads--item svg {
+        transform: rotate(180deg);
+    }
+    .pxxForm--label {
+        right: 0;
+        left: auto;
+    }
+
+    /* Using SCSS variables to store breakpoints */
+    $breakpoint-tablet: 768px;
+    $breakpoint-desktop: 1024px;
+    @media (min-width: $breakpoint-tablet) {
+        .nav--item {
+            font-size: 18px;
+        }
+        .splash--title {
+            text-align: right;
+        }
+        .splash--txt {
+            text-align: right;
+        }
+        .finder--filters__reset {
+            margin-right: 3px;
+        }
+    }
+    @media (min-width: $breakpoint-desktop) {
+        .footer--logo {
+            padding-left: 40px;
+            padding-right: 0;
+            display: block;
+        }
+        .footer--address {
+            padding-left: 40px;
+        }
+        .footer--contact {
+            padding-left: 40px;
+        }
+        .post--footer__layout {
+            font-size: 1em;
+        }
+    }
+}

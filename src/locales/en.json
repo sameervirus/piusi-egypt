@@ -1,0 +1,67 @@
+{
+    "menu": {
+        "en": "English",
+        "ar": "Arabic",
+        "home": "Home",
+        "about": "About us",
+        "products": "Products",
+        "contacts": "Contact Us",
+        "news": "News & Media",
+        "catalogues": "Catalogues"
+    },
+    "home": {
+        "finder": "Product Finder",
+        "sub_finder": "Choose your combination",
+        "finder_product": "All {msg} products",
+        "about": "Who we are"
+    },
+    "products": {
+        "all_applications": "All applications",
+        "browse_products": "Browse Products",
+        "filter_products": "Filter products",
+        "reset": "Reset",
+        "apply": "Apply",
+        "product_category": "Product Category",
+        "all_categories": "All Categories",
+        "fluid_compatibility": "Fluid compatibility",
+        "all_fluids": "All fluids",
+        "new": "New",
+        "fluid": "Fluid",
+        "features": "Features"
+    },
+    "catalog": {
+        "title": "Download catalogues",
+        "content": "In this area, you can download all Piusi catalogues and updates to product data sheets.<br />To view catalogues in PDF format, <a href='http://www.adobe.com/products/reader/' target='_blank' rel='noreferrer noopener'>download ADOBE Reader</a>",
+        "fuel_catalogue": "Fuel Catalogue",
+        "lubrication_catalogue": "Lubrication Catalogue",
+        "adblue_catalogue": "Adblue Catalogue"
+    },
+    "footer": {
+        "management": "Management",
+        "sales_gallery": "Sales and Gallery",
+        "copyrights": "© 2021 - Piusi Egypt."
+    },
+    "phone": "Phone",
+    "mobile": "Mobile",
+    "email": "Email",
+    "fax": "Fax",
+    "catalogue": "Catalogue",
+    "product_range": "Product Range",
+    "application": "Applications",
+    "where_we": "Where we are",
+    "downloads": "Downloads",
+    "request_information": "Request information",
+    "description": "Description",
+    "technical_data": "Technical data",
+    "name": "Name",
+    "name_error": "Name is required and minimum character is 3",
+    "phone_error": "Phone is required",
+    "company": "Company Name",
+    "company_error": "Company is required",
+    "email_error": "Email is required and Valid",
+    "your_message": "Your message",
+    "message_error": "Your Message Required",
+    "submit": "Submit",
+    "success_message": "Thank you, Your message has been received we will contact you soon.",
+    "back": "Back"
+}

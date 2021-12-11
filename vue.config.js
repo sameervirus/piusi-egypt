@@ -1,5 +1,6 @@
 module.exports = {
     productionSourceMap: false,
+    runtimeCompiler: true,
     chainWebpack: (config) => {
         config.module
             .rule("images")
@@ -11,16 +12,28 @@ module.exports = {
                 })
             );
     },
+
     css: {
         extract: {
             filename: "vue-css/[name].css",
             chunkFilename: "vue-css/[name].css",
         },
     },
+
     configureWebpack: {
         output: {
             filename: "vue-js/[name].js",
             chunkFilename: "vue-js/[name].js",
+        },
+    },
+
+    pluginOptions: {
+        i18n: {
+            locale: "en",
+            fallbackLocale: "ar",
+            localeDir: "locales",
+            enableInSFC: false,
+            enableBridge: false,
         },
     },
 };

@@ -10,7 +10,11 @@
                 <div class="company--intro">
                     <div
                         v-if="siteData.pages"
-                        v-html="siteData.pages.about.content"
+                        v-html="
+                            this.$i18n.locale == 'ar'
+                                ? siteData.pages.about.content_ar
+                                : siteData.pages.about.content
+                        "
                         class="company--intro__layout"
                     ></div>
                 </div>
@@ -30,7 +34,7 @@ export default {
     },
 };
 </script>
-<style>
+<style scoped>
 .company--wrap {
     margin-top: 0;
 }

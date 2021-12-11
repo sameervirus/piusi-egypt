@@ -1,7 +1,7 @@
 <template>
     <div class="main--wrap">
         <div class="miniHero--wrap">
-            <h1 class="miniHero--title">Where we are</h1>
+            <h1 class="miniHero--title">{{ $t("where_we") }}</h1>
             <div class="miniHero--body"></div>
         </div>
 
@@ -12,32 +12,76 @@
         >
             <div class="contatti--layout">
                 <div class="recapiti--wrap">
-                    <h2 class="recapiti--title mb-4">MANAGEMENT</h2>
+                    <h2 class="recapiti--title mb-4">
+                        {{ $t("footer.management") }}
+                    </h2>
 
                     <div class="recapiti--sx mb-4">
                         <div style="padding-right: 40px">
-                            {{ siteContent.address_management }}<br /><br />
-                            <span>Phone/Fax</span>
-                            {{ siteContent.tel_management }}<br />
-                            <span>Mobile</span> {{ siteContent.mob_management
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar
+                                          .address_management
+                                    : siteContent.site_content
+                                          .address_management
+                            }}<br /><br />
+                            <span>{{ $t("phone") }}/{{ $t("fax") }}</span>
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar.tel_management
+                                    : siteContent.site_content.tel_management
                             }}<br />
-                            <span>Email</span> {{ siteContent.email_management
+                            <span>{{ $t("mobile") }}</span>
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar.mob_management
+                                    : siteContent.site_content.mob_management
+                            }}<br />
+                            <span>{{ $t("email") }}</span>
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar
+                                          .email_management
+                                    : siteContent.site_content.email_management
                             }}<br /><br />
                         </div>
                     </div>
-                    <h2 class="recapiti--title mb-4">SALES AND GALLERY</h2>
+                    <h2 class="recapiti--title mb-4">
+                        {{ $t("footer.sales_gallery") }}
+                    </h2>
 
                     <div class="recapiti--sx mb-4">
                         <div style="padding-right: 40px">
-                            {{ siteContent.address }}<br /><br />
-                            <span>Phone</span> {{ siteContent.tel }}<br />
-                            <span>Fax</span> {{ siteContent.fax }}<br />
-                            <span>Mobile</span> {{ siteContent.mob }}<br />
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar.address
+                                    : siteContent.site_content.address
+                            }}<br /><br />
+                            <span>{{ $t("phone") }}</span>
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar.tel
+                                    : siteContent.site_content.tel
+                            }}<br />
+                            <span>{{ $t("fax") }}</span>
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar.fax
+                                    : siteContent.site_content.fax
+                            }}<br />
+                            <span>{{ $t("mobile") }}</span>
+                            {{
+                                $i18n.locale == "ar"
+                                    ? siteContent.site_content_ar.mob
+                                    : siteContent.site_content.mob
+                            }}<br />
                         </div>
                     </div>
                     <br /><br />
                     <div class="recapiti--sx mb-4">
-                        <div class="btn" @click="requestInfo">Contact Us</div>
+                        <div class="btn" @click="requestInfo">
+                            {{ $t("menu.contacts") }}
+                        </div>
                     </div>
                 </div>
 
@@ -66,7 +110,7 @@ export default {
     },
     computed: {
         siteContent() {
-            return this.$store.state.apiData.site_content;
+            return this.$store.state.apiData;
         },
     },
     methods: {

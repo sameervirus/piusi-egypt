@@ -2,39 +2,59 @@
     <div class="nav--mobile">
         <div class="nav--box" :class="{ opened: this.$store.state.opens }">
             <nav>
-                <router-link to="/" class="nav--item">Home</router-link>
+                <router-link
+                    :to="$i18nRoute({ name: 'Home' })"
+                    class="nav--item"
+                    >{{ $t("menu.home") }}</router-link
+                >
                 <div class="nav--item" data-subnavlink="">
-                    Products
+                    {{ $t("menu.products") }}
                     <div class="subnav--wrap__mobile">
                         <div class="subnav--layout__mobile">
                             <router-link
                                 v-for="(type, idx) in types"
                                 v-bind:key="idx"
-                                :to="{
-                                    path: `/products/${type.types_slug}/all`,
-                                }"
+                                :to="
+                                    $i18nRoute({
+                                        name: 'Products',
+                                        params: {
+                                            item: type.types_slug,
+                                            category: 'all',
+                                        },
+                                    })
+                                "
                                 class="subnav--item__mobile"
-                                >{{ type.types }}</router-link
+                                >{{
+                                    $i18n.locale == "ar"
+                                        ? type.types_ar
+                                        : type.types
+                                }}</router-link
                             >
                             <router-link
-                                to="/catalogues"
+                                :to="$i18nRoute({ name: 'Catalogues' })"
                                 class="subnav--item__mobile"
-                                >Catalogues</router-link
+                                >{{ $t("menu.catalogues") }}</router-link
                             >
                         </div>
                     </div>
                 </div>
 
-                <router-link to="/about" class="nav--item"
-                    >About us</router-link
+                <router-link
+                    :to="$i18nRoute({ name: 'About' })"
+                    class="nav--item"
+                    >{{ $t("menu.about") }}</router-link
                 >
 
-                <router-link to="/news-media" class="nav--item"
-                    >News & Media</router-link
+                <router-link
+                    :to="$i18nRoute({ name: 'News' })"
+                    class="nav--item"
+                    >{{ $t("menu.news") }}</router-link
                 >
 
-                <router-link to="/contacts" class="nav--item"
-                    >Contacts</router-link
+                <router-link
+                    :to="$i18nRoute({ name: 'Contacts' })"
+                    class="nav--item"
+                    >{{ $t("menu.contacts") }}</router-link
                 >
             </nav>
         </div>

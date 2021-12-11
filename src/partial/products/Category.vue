@@ -12,16 +12,23 @@
                     >
                         <div class="rangeIcons--img">
                             <img
-                                src="https://media.piusi.com/prodotti/icone/car_filling_sd.png"
+                                src="https://piusi-egypt.com/images/icons/car_filling_sd.png"
                                 srcset="
-                                    https://media.piusi.com/prodotti/icone/car_filling_sd.png 1x,
-                                    https://media.piusi.com/prodotti/icone/car_filling_hd.png 2x
+                                    https://piusi-egypt.com/images/icons/car_filling_sd.png 1x,
+                                    https://piusi-egypt.com/images/icons/car_filling_hd.png 2x
                                 "
                                 :alt="`All ${typeData.title} products`"
                             />
                         </div>
                         <div class="rangeIcons--txt">
-                            All {{ typeData.title }} products
+                            {{
+                                $t("home.finder_product", {
+                                    msg:
+                                        $i18n.locale == "ar"
+                                            ? typeData.title_ar
+                                            : typeData.title,
+                                })
+                            }}
                         </div>
                     </div>
                     <div
@@ -36,12 +43,16 @@
                     >
                         <div class="rangeIcons--img">
                             <img
-                                src="https://media.piusi.com/prodotti/icone/fluid_monitoring_sd.png"
+                                src="https://piusi-egypt.com/images/icons/fluid_monitoring_sd.png"
                                 :alt="range.category"
                             />
                         </div>
                         <div class="rangeIcons--txt">
-                            {{ range.category }}
+                            {{
+                                $i18n.locale == "ar"
+                                    ? range.category_ar
+                                    : range.category
+                            }}
                         </div>
                     </div>
                 </div>
@@ -96,9 +107,16 @@ export default {
             this.hand = false;
         },
         selectedCategory(e) {
-            this.$router.push({
-                path: `/products/${this.typeData.types}/${e}`,
-            });
+            this.$router.push(
+                this.$i18nRoute({
+                    name: "Products",
+                    params: {
+                        item: this.typeData.types,
+                        category: e,
+                    },
+                })
+                // {path: `products/${this.typeData.types}/${e}`,}
+            );
             this.selected = e;
         },
     },

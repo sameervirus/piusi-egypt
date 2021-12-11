@@ -1,0 +1,67 @@
+{
+    "menu": {
+        "en": "English",
+        "ar": "Arabic",
+        "home": "الرئيسية",
+        "about": "من نحن",
+        "products": "المنتجات",
+        "contacts": "الاتصال بنا",
+        "news": "الاخبار والميديا",
+        "catalogues": "كتالوجات"
+    },
+    "home": {
+        "finder": "ابحث عن منتج",
+        "sub_finder": "اختر مجموعتك",
+        "finder_product": "جميع منتجات  {msg}",
+        "about": "من نحن"
+    },
+    "products": {
+        "all_applications": "جميع التطبيقات",
+        "browse_products": "اعرض المنتجات",
+        "filter_products": "تصفية المنتجات",
+        "reset": "إعادة تعيين",
+        "apply": "تطبيق",
+        "product_category": "تصنيف المنتجات",
+        "all_categories": "جميع التصنيفات",
+        "fluid_compatibility": "توافق السوائل",
+        "all_fluids": "جميع السوائل",
+        "new": "جديد",
+        "fluid": "وقود",
+        "features": "مميزات"
+    },
+    "catalog": {
+        "title": "تحميل الكتالوجات",
+        "content": "في هذا المجال ، يمكنك تنزيل جميع كتالوجات Piusi والتحديثات على أوراق بيانات المنتج.<br />لعرض الكتالوجات بتنسيق PDF, <a href='http://www.adobe.com/products/reader/' target='_blank' rel='noreferrer noopener'>تحميل ADOBE Reader</a>",
+        "fuel_catalogue": "كتالوج الوقود",
+        "lubrication_catalogue": "كتالوج التشحيم",
+        "adblue_catalogue": "كتالوج Adblue"
+    },
+    "footer": {
+        "management": "الادارة",
+        "sales_gallery": "المعرض والمبيعات",
+        "copyrights": "© 2021 - بيوزي مصر."
+    },
+    "phone": "تليفون",
+    "mobile": "موبايل",
+    "email": "ايميل",
+    "fax": "فاكس",
+    "catalogue": "كتالوج",
+    "product_range": "نطاق المنتج",
+    "application": "التطبيقات",
+    "where_we": "اين تجدنا",
+    "downloads": "تحميل",
+    "request_information": "طلب معلومات",
+    "description": "الوصف",
+    "technical_data": "المواصفات الفنية",
+    "name": "الاسم",
+    "name_error": "الاسم مطلوب والحد الأدنى للرقم هو 3",
+    "phone_error": "التليفون مطلوب",
+    "company": "اسم الشركة",
+    "company_error": "اسم الشركة مطلوب",
+    "email_error": "الايميل مطلوب وصالح",
+    "your_message": "رسالتك",
+    "message_error": "رسالتك مطلوبة",
+    "submit": "أرسل",
+    "success_message": "لقد تم استلام رسالتك، وسوف يقوم احد موظفينا بالرد عليك قريبا",
+    "back": "العودة"
+}

@@ -10,27 +10,42 @@
                 <div
                     class="company--intro__layout"
                     v-if="siteData.pages"
-                    v-html="siteData.pages.slogan.content"
+                    v-html="
+                        this.$i18n.locale == 'ar'
+                            ? siteData.pages.slogan.content_ar
+                            : siteData.pages.slogan.content
+                    "
                 ></div>
                 <div class="company--intro__layout finder">
-                    <h1 class="heroSelector--title">PRODUCT FINDER</h1>
+                    <h1 class="heroSelector--title">{{ $t("home.finder") }}</h1>
                     <div class="heroSelector--subtitle">
-                        Choose your combination
+                        {{ $t("home.sub_finder") }}
                     </div>
                     <div class="heroSelector--body">
                         <div class="heroSelector--block heroSelector--catalog">
                             <select v-on:change="selectedTypes">
-                                <option value="0">Catalogue</option>
+                                <option value="0">
+                                    {{ $t("menu.catalogues") }}
+                                </option>
                                 <option
                                     v-for="(type, idx) in siteData.types"
                                     v-bind:key="idx"
                                     :value="type.types_slug"
                                 >
-                                    {{ type.types }}
+                                    {{
+                                        $i18n.locale == "ar"
+                                            ? type.types_ar
+                                            : type.types
+                                    }}
                                 </option>
                             </select>
                             <div class="heroSelector--ghost">
-                                <div>{{ ghost }}</div>
+                                <div v-if="$te(`${ghost}`)">
+                                    {{ $t(`${ghost}`) }}
+                                </div>
+                                <div v-else>
+                                    {{ ghost }}
+                                </div>
                             </div>
                         </div>
                         <div class="heroSelector--sep">
@@ -44,18 +59,31 @@
                         >
                             <select v-if="finders" v-on:change="selectedRange">
                                 <option value="all">
-                                    All {{ ghost }} products
+                                    {{
+                                        $t("home.finder_product", {
+                                            msg: ghost,
+                                        })
+                                    }}
                                 </option>
                                 <option
                                     v-for="(range, idx) in finders.categories"
                                     v-bind:key="idx"
                                     :value="range.category_slug"
                                 >
-                                    {{ range.category }}
+                                    {{
+                                        $i18n.locale == "ar"
+                                            ? range.category_ar
+                                            : range.category
+                                    }}
                                 </option>
                             </select>
                             <div class="heroSelector--ghost">
-                                <div>{{ ghost2 }}</div>
+                                <div v-if="$te(`${ghost2}`)">
+                                    {{ $t(`${ghost2}`) }}
+                                </div>
+                                <div v-else>
+                                    {{ ghost2 }}
+                                </div>
                             </div>
                         </div>
                         <div class="heroSelector--sep">
@@ -70,9 +98,13 @@
                             }"
                         >
                             <select v-if="finders" v-on:change="selectedApp">
-                                <option value="all">All applications</option>
+                                <option value="all">
+                                    {{ $t("products.all_applications") }}
+                                </option>
                                 <option
-                                    v-for="(app, idx) in finders.applications"
+                                    v-for="(app, idx) in $i18n.locale == 'ar'
+                                        ? finders.applications_ar
+                                        : finders.applications"
                                     v-bind:key="idx"
                                     :value="app.slug"
                                 >
@@ -80,7 +112,12 @@
                                 </option>
                             </select>
                             <div class="heroSelector--ghost">
-                                <div>{{ ghost3 }}</div>
+                                <div v-if="$te(`${ghost3}`)">
+                                    {{ $t(`${ghost3}`) }}
+                                </div>
+                                <div v-else>
+                                    {{ ghost3 }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,7 +127,7 @@
                             class="btn--wrap"
                             @click="goToProducts"
                         >
-                            Browse products
+                            {{ $t("products.browse_products") }}
                         </button>
                     </div>
                 </div>
@@ -100,10 +137,16 @@
             <div class="company--row__layout">
                 <div class="company--row__side centered">
                     <div class="company--row__content text-xl">
-                        <h2><strong>Who we are</strong></h2>
+                        <h2>
+                            <strong>{{ $t("home.about") }}</strong>
+                        </h2>
                         <div
                             v-if="siteData.pages"
-                            v-html="siteData.pages.who_we_are.content"
+                            v-html="
+                                this.$i18n.locale == 'ar'
+                                    ? siteData.pages.who_we_are.content_ar
+                                    : siteData.pages.who_we_are.content
+                            "
                         ></div>
                     </div>
                 </div>
@@ -124,12 +167,13 @@ export default {
     },
     data() {
         return {
-            ghost: "Catalogue",
-            ghost2: "Product range",
-            ghost3: "Application",
+            ghost: "catalogue",
+            ghost2: "product_range",
+            ghost3: "application",
             searchText: {},
         };
     },
+    mounted() {},
     computed: {
         ...mapGetters({ siteData: "getCurrentData", finders: "getFinder" }),
     },
@@ -137,8 +181,8 @@ export default {
         selectedTypes(e) {
             this.searchText.types = e.target.value;
             this.ghost = e.target.options[e.target.selectedIndex].text;
-            this.ghost2 = "Product range";
-            this.ghost3 = "Application";
+            this.ghost2 = "product_range";
+            this.ghost3 = "application";
             this.$store.dispatch("setFinder", e.target.value);
         },
         selectedRange(e) {
@@ -152,9 +196,9 @@ export default {
         goToProducts() {
             const items = this.searchText;
             this.searchText = {};
-            this.ghost = "Catalogue";
-            this.ghost2 = "Product range";
-            this.ghost3 = "Application";
+            this.ghost = "catalogue";
+            this.ghost2 = "product_range";
+            this.ghost3 = "application";
             this.$store.commit("setFinder", null);
             this.$router.push({
                 name: "Products",
