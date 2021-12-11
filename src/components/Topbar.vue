@@ -1,9 +1,7 @@
 <template>
     <div class="topbar--wrap">
         <div class="topbar--lang">
-            <a href="/">en</a>
-            <span class="ml-1 mr-1">|</span>
-            <a href="/ar">ar</a>
+            <LocaleSwitcher />
         </div>
 
         <div class="topbar--portal" data-ui-apriportal="">
@@ -99,7 +97,9 @@
 </template>
 
 <script>
+import LocaleSwitcher from "@/components/LocaleSwitcher.vue";
 export default {
+    components: { LocaleSwitcher },
     data() {
         return {};
     },

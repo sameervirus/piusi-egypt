@@ -2,7 +2,7 @@
     <div class="main--wrap">
         <div class="support--wrap">
             <div class="miniHero--wrap">
-                <h1 class="miniHero--title">News & Media</h1>
+                <h1 class="miniHero--title">{{ $t("menu.news") }}</h1>
                 <div class="miniHero--body"></div>
             </div>
             <div v-if="posts" class="videoGallery--wrap">
@@ -27,7 +27,13 @@
                             "
                         >
                             {{
-                                post.body.includes("youtube") ? "Video" : "News"
+                                $i18n.locale == "ar"
+                                    ? post.body_ar.includes("youtube")
+                                        ? "فيديو"
+                                        : "اخبار"
+                                    : post.body.includes("youtube")
+                                    ? "Video"
+                                    : "News"
                             }}
                         </span>
                         <div class="videoGallery--img">
@@ -37,7 +43,11 @@
                         </div>
                         <div class="videoGallery--txt">
                             <div class="videoGallery--title">
-                                {{ post.title }}
+                                {{
+                                    $i18n.locale == "ar"
+                                        ? post.title_ar
+                                        : post.title
+                                }}
                             </div>
                             <div class="videoGallery--abstract"></div>
                         </div>
@@ -84,7 +94,11 @@
                                             justify-start
                                             p-6
                                         "
-                                        v-html="frame.body"
+                                        v-html="
+                                            this.$i18n.locale == 'ar'
+                                                ? frame.body_ar
+                                                : frame.body
+                                        "
                                     ></div>
                                 </article>
                             </section>

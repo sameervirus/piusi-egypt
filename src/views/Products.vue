@@ -72,10 +72,16 @@ export default {
             );
         },
         title() {
-            if (!this.selectedCategory) return "Products";
-            if (this.selectedCategory?.length === 0) return "No Products found";
+            if (!this.selectedCategory)
+                return this.$i18n.locale == "ar" ? "منتجات" : "Products";
+            if (this.selectedCategory?.length === 0)
+                return this.$i18n.locale == "ar"
+                    ? "لم يتم العثور علي منتجات"
+                    : "No Products found";
             if (this.$route.params.category == "all") {
-                return `All ${this.selectedCategory[0].types} Products`;
+                return this.$i18n.locale == "ar"
+                    ? `جميع منتجات ${this.selectedCategory[0].types_ar}`
+                    : `All ${this.selectedCategory[0].types} Products`;
             } else {
                 return this.titleCase(this.selectedCategory[0].category);
             }

@@ -3,19 +3,33 @@
         <div class="prodotti--wrap">
             <div class="prodotti--layout">
                 <div class="prodotti--top">
-                    <h1 class="prodotti--title">{{ product.name }}</h1>
+                    <h1 class="prodotti--title">
+                        {{
+                            $i18n.locale == "ar"
+                                ? product.name_ar
+                                : product.name
+                        }}
+                    </h1>
                     <div class="prodotti--top__sx">
                         <div id="lightgallery" class="productGallery--wrap">
                             <div class="productGallery--main">
                                 <a
-                                    :title="product.name"
+                                    :title="
+                                        $i18n.locale == 'ar'
+                                            ? product.name_ar
+                                            : product.name
+                                    "
                                     class="productGallery--mainLink galleryitem"
                                     :href="product.url_cover"
                                 >
                                     <img
                                         class="productGallery--mainImage"
                                         :src="product.url_cover"
-                                        :alt="product.name"
+                                        :alt="
+                                            $i18n.locale == 'ar'
+                                                ? product.name_ar
+                                                : product.name
+                                        "
                                     />
                                 </a>
                             </div>
@@ -67,22 +81,32 @@
                         <div class="productsInfo--wrap">
                             <div v-if="product.sub" class="productsInfo--item">
                                 <div class="productsInfo--label">
-                                    Product category
+                                    {{ $t("products.product_category") }}
                                 </div>
                                 <div class="productsInfo--pill">
-                                    {{ product.sub }}
+                                    {{
+                                        $i18n.locale == "ar"
+                                            ? product.sub_ar
+                                            : product.sub
+                                    }}
                                 </div>
                             </div>
                             <div
                                 v-if="product.fluids"
                                 class="productsInfo--item"
                             >
-                                <div class="productsInfo--label">Fluid</div>
+                                <div class="productsInfo--label">
+                                    {{ $t("products.fluid") }}
+                                </div>
                                 <div class="productsInfo--pill">
                                     {{
-                                        product.fluids
-                                            .map((i) => i.name)
-                                            .join(" | ")
+                                        $i18n.locale == "ar"
+                                            ? product.arfluids
+                                                  .map((i) => i.name)
+                                                  .join(" | ")
+                                            : product.fluids
+                                                  .map((i) => i.name)
+                                                  .join(" | ")
                                     }}
                                 </div>
                             </div>
@@ -91,27 +115,37 @@
                                 class="productsInfo--item"
                             >
                                 <div class="productsInfo--label">
-                                    Application
+                                    {{ $t("application") }}
                                 </div>
                                 <div class="productsInfo--pill">
                                     {{
-                                        product.applications
-                                            .map((i) => i.name)
-                                            .join(", ")
+                                        $i18n.locale == "ar"
+                                            ? product.arapplications
+                                                  .map((i) => i.name)
+                                                  .join(" | ")
+                                            : product.applications
+                                                  .map((i) => i.name)
+                                                  .join(" | ")
                                     }}
                                 </div>
                             </div>
                         </div>
 
                         <div class="productsFeatures--wrap">
-                            <h2 class="prodotti--subtitle">Features</h2>
+                            <h2 class="prodotti--subtitle">
+                                {{ $t("products.features") }}
+                            </h2>
                             <div
                                 class="productsFeatures--list"
-                                v-html="product.features"
+                                v-html="
+                                    $i18n.locale == 'ar'
+                                        ? product.features_ar
+                                        : product.features
+                                "
                             ></div>
 
                             <div class="btn" @click="requestInfo">
-                                Request information
+                                {{ $t("request_information") }}
                             </div>
                         </div>
                     </div>
@@ -120,25 +154,41 @@
                 <div class="productContent--wrap">
                     <div class="productContent--sx">
                         <div class="prodotti--descrizione">
-                            <div class="prodotti--subtitle">Description</div>
-                            <div v-html="product.description"></div>
+                            <div class="prodotti--subtitle">
+                                {{ $t("description") }}
+                            </div>
+                            <div
+                                v-html="
+                                    $i18n.locale == 'ar'
+                                        ? product.description_ar
+                                        : product.description
+                                "
+                            ></div>
                         </div>
                         <div
                             class="productManuals--wrap"
                             style="margin-top: 40px"
                             v-if="product.technical_data"
                         >
-                            <h2 class="prodotti--subtitle">Technical data</h2>
+                            <h2 class="prodotti--subtitle">
+                                {{ $t("technical_data") }}
+                            </h2>
                             <div
                                 class="productManuals--list"
-                                v-html="product.technical_data"
+                                v-html="
+                                    $i18n.locale == 'ar'
+                                        ? product.technical_data_ar
+                                        : product.technical_data
+                                "
                             ></div>
                         </div>
                     </div>
 
                     <div v-if="product.downloads" class="productContent--dx">
                         <div class="productDownloads--wrap">
-                            <h2 class="prodotti--subtitle">Downloads</h2>
+                            <h2 class="prodotti--subtitle">
+                                {{ $t("downloads") }}
+                            </h2>
                             <div class="productDownloads--list">
                                 <a
                                     v-for="(pdf, idx) in product.downloads"

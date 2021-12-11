@@ -4,19 +4,9 @@
             <div class="splash--layout">
                 <div class="splash--sx">
                     <div class="splash--body">
-                        <h1 class="splash--title">Download catalogues</h1>
+                        <h1 class="splash--title">{{ $t("catalog.title") }}</h1>
                         <div class="splash--txt">
-                            <p>
-                                In this area, you can download all Piusi
-                                catalogues and updates to product data
-                                sheets.<br />To view catalogues in PDF format,
-                                <a
-                                    href="http://www.adobe.com/products/reader/"
-                                    target="_blank"
-                                    rel="noreferrer noopener"
-                                    >download ADOBE Reader</a
-                                >
-                            </p>
+                            <p v-html="$t('catalog.content')"></p>
                         </div>
                     </div>
                 </div>
@@ -26,11 +16,13 @@
         <div class="bg">
             <div class="group--wrap">
                 <div class="group--layout">
-                    <h2 class="group--title">Catalogues</h2>
+                    <h2 class="group--title">{{ $t("menu.catalogues") }}</h2>
                     <div class="group--body">
                         <div class="group--txt"></div>
                         <div class="downloadList--wrap">
-                            <div class="downloadList--title">Downloads</div>
+                            <div class="downloadList--title">
+                                {{ $t("downloads") }}
+                            </div>
 
                             <a
                                 href="https://media.piusi.com/pdf/INT/Fuel/Catalogs/FUEL_CAT_C0375A_07.21_EN.pdf"
@@ -38,7 +30,7 @@
                                 class="downloadList--link"
                             >
                                 <div class="downloadList--name">
-                                    FUEL CATALOGUE
+                                    {{ $t("catalog.fuel_catalogue") }}
                                 </div>
                             </a>
 
@@ -48,7 +40,7 @@
                                 class="downloadList--link"
                             >
                                 <div class="downloadList--name">
-                                    LUBRICATION CATALOGUE-ENGLISH
+                                    {{ $t("catalog.lubrication_catalogue") }}
                                 </div>
                             </a>
 
@@ -58,7 +50,7 @@
                                 class="downloadList--link"
                             >
                                 <div class="downloadList--name">
-                                    ADBLUE CATALOGUE-ENGLISH
+                                    {{ $t("catalog.adblue_catalogue") }}
                                 </div>
                             </a>
                         </div>

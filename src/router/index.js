@@ -1,53 +1,67 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import { Trans } from "@/plugins/Translation";
+
+function load(component) {
+    // '@' is aliased to src/components
+    return () => import(`@/views/${component}.vue`);
+}
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: "/",
-        name: "Home",
-        component: Home,
+        path: "/:locale",
+        component: {
+            template: "<router-view></router-view>",
+        },
+        beforeEnter: Trans.routeMiddleware,
+        children: [
+            {
+                path: "",
+                name: "Home",
+                component: load("Home"),
+            },
+            {
+                path: "about",
+                name: "About",
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: load("About"),
+            },
+            {
+                path: "products/:item/:category",
+                name: "Products",
+                component: load("Products"),
+            },
+            {
+                path: "product/:item",
+                name: "Product",
+                component: load("Item"),
+            },
+            {
+                path: "news-media",
+                name: "News",
+                component: load("News"),
+            },
+            {
+                path: "contacts",
+                name: "Contacts",
+                component: load("Contacts"),
+            },
+            {
+                path: "catalogues",
+                name: "Catalogues",
+                component: load("Catalogues"),
+            },
+        ],
     },
     {
-        path: "/about",
-        name: "About",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import(/* webpackChunkName: "about" */ "../views/About.vue"),
-    },
-    {
-        path: "/products/:item/:category",
-        name: "Products",
-        component: () =>
-            import(/* webpackChunkName: "products"*/ "../views/Products.vue"),
-    },
-    {
-        path: "/product/:item",
-        name: "Product",
-        component: () =>
-            import(/* webpackChunkName: "product"*/ "../views/Item.vue"),
-    },
-    {
-        path: "/news-media",
-        name: "News",
-        component: () =>
-            import(/* webpackChunkName: "product"*/ "../views/News.vue"),
-    },
-    {
-        path: "/contacts",
-        name: "Contacts",
-        component: () =>
-            import(/* webpackChunkName: "product"*/ "../views/Contacts.vue"),
-    },
-    {
-        path: "/catalogues",
-        name: "Catalogues",
-        component: () =>
-            import(/* webpackChunkName: "product"*/ "../views/Catalogues.vue"),
+        path: "*",
+        redirect() {
+            return Trans.defaultLocale;
+        },
     },
 ];
 

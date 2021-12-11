@@ -1,17 +1,23 @@
 <template>
     <div class="pxxForm--wrap">
         <div class="pxxForm--layout">
-            <div class="pxxForm--altHead">Contacts</div>
+            <div class="pxxForm--altHead">{{ $t("menu.contacts") }}</div>
 
             <div class="pxxForm--body">
                 <form
                     v-if="!fromSent"
                     class="pxxForm--form"
                     @submit.prevent="submitForm"
-                    autocomplete="off"
                 >
                     <div v-if="product" class="pxxForm--row pxxForm--row__col">
-                        <p>Request information: {{ product.name }}</p>
+                        <p>
+                            {{ $t("request_information") }}:
+                            {{
+                                $i18n.locale == "ar"
+                                    ? product.name_ar
+                                    : product.name
+                            }}
+                        </p>
                         <input
                             type="hidden"
                             name="form.item"
@@ -26,7 +32,7 @@
                                     'pxxForm--label__editing': focusdName,
                                     'pxxForm--label__on': isNameValid,
                                 }"
-                                >Name</label
+                                >{{ $t("name") }}</label
                             >
                             <input
                                 autocomplete="off"
@@ -40,7 +46,7 @@
                                 v-if="!isNameValid && sub"
                                 class="pxxForm--msg"
                             >
-                                Name is required and minimum character is 3
+                                {{ $t("name_error") }}
                             </div>
                         </div>
                         <div class="pxxForm--control pxxForm--control__text">
@@ -50,7 +56,7 @@
                                     'pxxForm--label__editing': focusdPhone,
                                     'pxxForm--label__on': isPhoneValid,
                                 }"
-                                >Phone</label
+                                >{{ $t("phone") }}</label
                             >
                             <input
                                 v-model="form.phone"
@@ -64,7 +70,7 @@
                                 v-if="!isPhoneValid && sub"
                                 class="pxxForm--msg"
                             >
-                                Phone is required
+                                {{ $t("phone_error") }}
                             </div>
                         </div>
                     </div>
@@ -77,7 +83,7 @@
                                     'pxxForm--label__editing': focusdCompany,
                                     'pxxForm--label__on': isCompanyValid,
                                 }"
-                                >Company</label
+                                >{{ $t("company") }}</label
                             >
                             <input
                                 v-model="form.company"
@@ -91,7 +97,7 @@
                                 v-if="!isCompanyValid && sub"
                                 class="pxxForm--msg"
                             >
-                                Company Name is required
+                                {{ $t("company_error") }}
                             </div>
                         </div>
 
@@ -102,7 +108,7 @@
                                     'pxxForm--label__editing': focusdEmail,
                                     'pxxForm--label__on': isEmailValid,
                                 }"
-                                >Email</label
+                                >{{ $t("email") }}</label
                             >
                             <input
                                 v-model="form.email"
@@ -116,7 +122,7 @@
                                 v-if="!isEmailValid && sub"
                                 class="pxxForm--msg"
                             >
-                                Email is required and Valid
+                                {{ $t("email_error") }}
                             </div>
                         </div>
                     </div>
@@ -125,7 +131,9 @@
                         <div
                             class="pxxForm--control pxxForm--control__textarea"
                         >
-                            <label class="pxxForm--label">Your message</label>
+                            <label class="pxxForm--label">{{
+                                $t("your_message")
+                            }}</label>
                             <textarea
                                 v-model="form.messages"
                                 class="pxxForm--textarea"
@@ -134,24 +142,25 @@
                                 v-if="!isMessagesValid && sub"
                                 class="pxxForm--msg"
                             >
-                                Message Name is required
+                                {{ $t("message_error") }}
                             </div>
                         </div>
                     </div>
 
                     <div class="pxxForm--response">
                         <div data-status="normal">
-                            <button class="btn">Submit</button>
+                            <button class="btn">{{ $t("submit") }}</button>
                         </div>
                     </div>
                 </form>
                 <div data-status="error" v-if="fromSent">
                     <div class="pxxForm--responseErrors">
-                        Thank you, Your message has been received we will
-                        contact you soon.
+                        {{ $t("success_message") }}
                     </div>
                 </div>
-                <div class="pxxForm--back" @click="closeForm">← Back</div>
+                <div class="pxxForm--back" @click="closeForm">
+                    ← {{ $t("back") }}
+                </div>
             </div>
         </div>
     </div>
@@ -208,11 +217,17 @@ export default {
         },
     },
     methods: {
-        submitForm() {
+        async submitForm() {
             this.sub = true;
             if (this.fromValid) {
                 this.fromSent = true;
-                console.log(this.form);
+                this.$store.commit("setLoading", true);
+                const response = await this.$api.create({
+                    resource: "feedback",
+                    data: this.form,
+                });
+                this.$store.commit("setLoading", false);
+                if (response.data == "ok") this.fromSent = true;
             }
         },
         validateEmail(email) {

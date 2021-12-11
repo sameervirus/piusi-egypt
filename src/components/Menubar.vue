@@ -1,7 +1,7 @@
 <template>
     <div class="menu--wrap">
         <div class="menu--logowrap">
-            <router-link to="/" class="menu--logo"
+            <router-link :to="$i18nRoute({ name: 'Home' })" class="menu--logo"
                 ><img
                     src="//www.piusi-egypt.com/images/piusi-logo.svg"
                     alt="PIUSI SpA"
@@ -19,22 +19,32 @@
         <div class="nav--desktop">
             <div class="nav--box">
                 <nav>
-                    <router-link to="/" class="nav--item">Home</router-link>
+                    <router-link
+                        :to="$i18nRoute({ name: 'Home' })"
+                        class="nav--item"
+                        >{{ $t("menu.home") }}</router-link
+                    >
                     <div class="nav--item" v-on:click="subnav()">
-                        Products
+                        {{ $t("menu.products") }}
                         <div class="subnav--wrap__mobile"></div>
                     </div>
 
-                    <router-link to="/about" class="nav--item"
-                        >About us</router-link
+                    <router-link
+                        :to="$i18nRoute({ name: 'About' })"
+                        class="nav--item"
+                        >{{ $t("menu.about") }}</router-link
                     >
 
-                    <router-link to="/news-media" class="nav--item"
-                        >News & Media</router-link
+                    <router-link
+                        :to="$i18nRoute({ name: 'News' })"
+                        class="nav--item"
+                        >{{ $t("menu.news") }}</router-link
                     >
 
-                    <router-link to="/contacts" class="nav--item"
-                        >Contacts</router-link
+                    <router-link
+                        :to="$i18nRoute({ name: 'Contacts' })"
+                        class="nav--item"
+                        >{{ $t("menu.contacts") }}</router-link
                     >
                 </nav>
             </div>
@@ -100,13 +110,27 @@
                         <router-link
                             v-for="(type, idx) in types"
                             v-bind:key="idx"
-                            :to="{ path: `/products/${type.types_slug}/all` }"
+                            :to="
+                                $i18nRoute({
+                                    name: 'Products',
+                                    params: {
+                                        item: type.types_slug,
+                                        category: 'all',
+                                    },
+                                })
+                            "
                             class="subnav--item"
-                            >{{ type.types }}</router-link
+                            >{{
+                                $i18n.locale == "ar"
+                                    ? type.types_ar
+                                    : type.types
+                            }}</router-link
                         >
 
-                        <router-link to="/catalogues" class="subnav--item"
-                            >Catalogues</router-link
+                        <router-link
+                            :to="$i18nRoute({ name: 'Catalogues' })"
+                            class="subnav--item"
+                            >{{ $t("menu.catalogues") }}</router-link
                         >
                     </div>
                     <div

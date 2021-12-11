@@ -48,33 +48,84 @@
             </div>
             <div v-if="siteContent" class="footer--content">
                 <div class="footer--address">
-                    <h2 class="font-bold text-lg">MANAGEMENT</h2>
-                    <strong>{{ siteContent.title }}</strong
+                    <h2 class="font-bold text-lg">
+                        {{ $t("footer.management") }}
+                    </h2>
+                    <strong>{{
+                        $i18n.locale == "ar"
+                            ? siteContent.site_content_ar.title
+                            : siteContent.site_content.title
+                    }}</strong
                     ><br />
-                    {{ siteContent.address_management }}<br /><br />
+                    {{
+                        $i18n.locale == "ar"
+                            ? siteContent.site_content_ar.address_management
+                            : siteContent.site_content.address_management
+                    }}<br /><br />
 
-                    Phone: {{ siteContent.tel_management }}<br />
-                    Mobile: {{ siteContent.mob_management }}<br />
-                    Email: {{ siteContent.email_management }}<br />
+                    {{ $t("phone") }}:
+                    {{
+                        $i18n.locale == "ar"
+                            ? siteContent.site_content_ar.tel_management
+                            : siteContent.site_content.tel_management
+                    }}<br />
+                    {{ $t("mobile") }}:
+                    {{
+                        $i18n.locale == "ar"
+                            ? siteContent.site_content_ar.mob_management
+                            : siteContent.site_content.mob_management
+                    }}<br />
+                    {{ $t("email") }}:
+                    {{
+                        $i18n.locale == "ar"
+                            ? siteContent.site_content_ar.email_management
+                            : siteContent.site_content.email_management
+                    }}<br />
                 </div>
                 <div class="footer--contact">
-                    <h2 class="font-bold text-lg">SALES AND GALLERY</h2>
-                    <p class="max-w-sm">{{ siteContent.address }}</p>
+                    <h2 class="font-bold text-lg">
+                        {{ $t("footer.sales_gallery") }}
+                    </h2>
+                    <p class="max-w-sm">
+                        {{
+                            $i18n.locale == "ar"
+                                ? siteContent.site_content_ar.address
+                                : siteContent.site_content.address
+                        }}
+                    </p>
                     <br />
                     <mark style="background: none; color: #fff"
-                        ><span>Phone</span> {{ siteContent.tel }}</mark
+                        ><span>{{ $t("phone") }}</span>
+                        {{
+                            $i18n.locale == "ar"
+                                ? siteContent.site_content_ar.tel
+                                : siteContent.site_content.tel
+                        }}</mark
                     ><br />
                     <mark style="background: none; color: #fff"
-                        ><span>Fax</span> {{ siteContent.fax }}</mark
+                        ><span>{{ $t("fax") }}</span>
+                        {{
+                            $i18n.locale == "ar"
+                                ? siteContent.site_content_ar.fax
+                                : siteContent.site_content.fax
+                        }}</mark
                     ><br />
-                    <span>Mobile</span> {{ siteContent.mob }}<br />
+                    <span>{{ $t("mobile") }}</span>
+                    {{
+                        $i18n.locale == "ar"
+                            ? siteContent.site_content_ar.mob
+                            : siteContent.site_content.mob
+                    }}<br />
                 </div>
             </div>
             <div class="footer--social">
                 <a
                     rel="noopener"
-                    v-if="siteContent && siteContent.social_facebook"
-                    :href="'//' + siteContent.social_facebook"
+                    v-if="
+                        siteContent.site_content &&
+                        siteContent.site_content.social_facebook
+                    "
+                    :href="'//' + siteContent.site_content.social_facebook"
                     class="footer--social__item"
                     target="_blank"
                     ><svg
@@ -90,8 +141,11 @@
                 ></a>
                 <a
                     rel="noopener"
-                    v-if="siteContent && siteContent.social_twitter"
-                    :href="'//' + siteContent.social_twitter"
+                    v-if="
+                        siteContent.site_content &&
+                        siteContent.site_content.social_twitter
+                    "
+                    :href="'//' + siteContent.site_content.social_twitter"
                     class="footer--social__item"
                     target="_blank"
                     ><svg
@@ -107,8 +161,11 @@
                 ></a>
                 <a
                     rel="noopener"
-                    v-if="siteContent && siteContent.social_youtube"
-                    :href="'//' + siteContent.social_youtube"
+                    v-if="
+                        siteContent.site_content &&
+                        siteContent.site_content.social_youtube
+                    "
+                    :href="'//' + siteContent.site_content.social_youtube"
                     class="footer--social__item"
                     target="_blank"
                     ><svg
@@ -124,8 +181,11 @@
                 ></a>
                 <a
                     rel="noopener"
-                    v-if="siteContent && siteContent.social_linkedin"
-                    :href="'//' + siteContent.social_linkedin"
+                    v-if="
+                        siteContent.site_content &&
+                        siteContent.site_content.social_linkedin
+                    "
+                    :href="'//' + siteContent.site_content.social_linkedin"
                     class="footer--social__item"
                     target="_blank"
                     ><svg
@@ -144,8 +204,11 @@
                 </a>
                 <a
                     rel="noopener"
-                    v-if="siteContent && siteContent.social_instgram"
-                    :href="'//' + siteContent.social_instgram"
+                    v-if="
+                        siteContent.site_content &&
+                        siteContent.site_content.social_instgram
+                    "
+                    :href="'//' + siteContent.site_content.social_instgram"
                     class="footer--social__item"
                     target="_blank"
                     ><svg
@@ -165,7 +228,9 @@
         <div class="post--footer">
             <div class="post--footer__layout">
                 <hr />
-                <div class="post--footer__block">© 2021 - Piusi Egypt.</div>
+                <div class="post--footer__block">
+                    {{ $t("footer.copyrights") }}
+                </div>
                 <div class="post--footer__block">
                     <a href="//raindesigner.com" target="_blank"
                         >Raindesigner.com</a
@@ -180,7 +245,7 @@
 export default {
     computed: {
         siteContent() {
-            return this.$store.state.apiData.site_content;
+            return this.$store.state.apiData;
         },
     },
 };
